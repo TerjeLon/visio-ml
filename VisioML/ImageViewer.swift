@@ -115,9 +115,9 @@ struct ImageViewer: View {
               self.movingAnnotationSize = annotation.size.scaledBy(self.scaleFactor)
             }
             self.newAnnotationCenter = $0.location
+            self.image.move(annotation: annotation, to: $0.location.scaledBy(1 / self.scaleFactor))
           }
           .onEnded { _ in
-            self.image.move(annotation: annotation, to: self.newAnnotationCenter.scaledBy(1 / self.scaleFactor))
             self.movingAnnotation.toggle()
           }
         )

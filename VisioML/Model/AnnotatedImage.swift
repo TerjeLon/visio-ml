@@ -80,10 +80,10 @@ struct AnnotatedImage {
   }
   
   mutating func beginMoving(annotation: Annotation) {
+    guard let index = annotations.firstIndex(where: { $0.id == annotation.id }) else { return }
+      
     toggle(annotation: annotation)
-    annotations.indices.forEach { i in
-      annotations[i].isMoving = annotations[i].id == annotation.id
-    }
+    annotations[index].isMoving = true
   }
 
   mutating func move(annotation: Annotation, to newOrigin: CGPoint) {
